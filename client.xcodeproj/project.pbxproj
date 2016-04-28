@@ -15,6 +15,7 @@
 		CAC061641CD1EEAD00641E58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC061621CD1EEAD00641E58 /* LaunchScreen.storyboard */; };
 		CAC0616F1CD1EEAD00641E58 /* clientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC0616E1CD1EEAD00641E58 /* clientTests.swift */; };
 		CAC0617A1CD1EEAD00641E58 /* clientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC061791CD1EEAD00641E58 /* clientUITests.swift */; };
+		CAC061881CD1EEF700641E58 /* SocketIOClientSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC061871CD1EEF700641E58 /* SocketIOClientSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		CAC061751CD1EEAD00641E58 /* clientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = clientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC061791CD1EEAD00641E58 /* clientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clientUITests.swift; sourceTree = "<group>"; };
 		CAC0617B1CD1EEAD00641E58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAC061871CD1EEF700641E58 /* SocketIOClientSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SocketIOClientSwift.framework; path = Carthage/Build/iOS/SocketIOClientSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAC061881CD1EEF700641E58 /* SocketIOClientSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +82,7 @@
 		CAC0614A1CD1EEAD00641E58 = {
 			isa = PBXGroup;
 			children = (
+				CAC061871CD1EEF700641E58 /* SocketIOClientSwift.framework */,
 				CAC061551CD1EEAD00641E58 /* client */,
 				CAC0616D1CD1EEAD00641E58 /* clientTests */,
 				CAC061781CD1EEAD00641E58 /* clientUITests */,
@@ -138,6 +142,7 @@
 				CAC0614F1CD1EEAD00641E58 /* Sources */,
 				CAC061501CD1EEAD00641E58 /* Frameworks */,
 				CAC061511CD1EEAD00641E58 /* Resources */,
+				CAC061891CD1EEFD00641E58 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -253,6 +258,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CAC061891CD1EEFD00641E58 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SocketIOClientSwift.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CAC0614F1CD1EEAD00641E58 /* Sources */ = {
@@ -403,6 +425,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = client/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.generace.BppicksIos.client;
@@ -414,6 +440,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = client/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.generace.BppicksIos.client;

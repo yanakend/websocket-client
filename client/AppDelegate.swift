@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SocketIOClientSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
+
+
+    let socket = SocketIOClient(socketURL: NSURL(string: "http://localhost:8080")!, options: [.Log(true), .ForcePolling(true)])
+    socket.on("connect") {data, ack in
+      print("socket connected")
+    }
+
+    socket.on("currentAmount") {data, ack in
+      if let cur = data[0] as? Double {
+        socket.emitWithAck("canUpdate", cur)(timeoutAfter: 0) {data in
+          socket.emit("update", ["amount": cur + 2.50])
+        }
+
+        ack.with("Got your currentAmount", "dude")
+      }
+    }
+    
+    socket.connect()
+
+
     return true
   }
 
